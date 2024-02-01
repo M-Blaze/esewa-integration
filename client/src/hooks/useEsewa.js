@@ -1,6 +1,6 @@
 const useEsewa = () => {
-  const proceedToBuy = async (product) => {
-    const response = await fetch("/esewa", {
+  const openEsewaPortal = async (product) => {
+    const response = await fetch("/esewa/payload", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const useEsewa = () => {
     esewaForm.submit()
   }
   
-  return [proceedToBuy]
+  return [openEsewaPortal]
 }
 
 export default useEsewa
