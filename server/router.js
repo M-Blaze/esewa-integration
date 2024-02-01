@@ -1,8 +1,7 @@
 const router = require('express').Router()
 
-const productRoutes = require('./modules/product/product.routes')
+const esewaRoutes = require('./modules/esewa/esewa.routes')
 
-
-router.use('/product', productRoutes)
+router.use('/esewa', esewaRoutes)
 
 module.exports = router
