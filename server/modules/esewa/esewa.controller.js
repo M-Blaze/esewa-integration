@@ -33,13 +33,25 @@ exports.getEsewaPayload = (req, res) => {
   const product = req.body
 
   product.transaction_uuid = uuid.v4()
-  console.log(product)
   if (!checkIfValuesOfSignatureArePresent(product)) {
     return res.status(400).send({ success: false, message: "Values unmet" })
   }
 
-  const signedInput = generateSignedInput(payload)
+  const signedInput = generateSignedInput(product)
 
   product.signature = generateSignature(signedInput)
   res.status(200).send({ success: true, formData: product, esewaLink: ESEWA_LINK })
+}
+
+exports.updateOrderToCompleted = (req, res) => {
+  const base64Input = req.params.base64Input
+  const decodedInput = decodeBase64ToASCII(base64Input)
+
+  res.status(200).send({ success: true, decodedInput })
+}
+
+const decodeBase64ToASCII = (base64Input) => {
+  const decodedValue = Buffer.from(base64Input, 'base64').toString('ascii')
+
+  return decodedValue
 }
