@@ -1,20 +1,20 @@
 const useEsewa = () => {
   const openEsewaPortal = async (product) => {
-    const response = await fetch("/esewa/payload", {
+    const response = await fetch("/api/esewa/payload", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ product }),
+      body: JSON.stringify(product),
     })
 
-    const { success, payload, esewaLink } = await response.json()
+    const { success, formData, esewaLink } = await response.json()
 
     if (!success) {
       return alert('error')
     }
 
-    createEsewaFormAndSubmit(payload, esewaLink)
+    createEsewaFormAndSubmit(formData, esewaLink)
   }
 
   const createEsewaFormAndSubmit = (payload, esewaLink) => {
@@ -26,7 +26,7 @@ const useEsewa = () => {
     for (const field in payload) {
       const input = document.createElement("input")
 
-      input.type = "hidden"
+      input.type = "text"
       input.id = field
       input.name = field
       input.setAttribute("value", payload[field])
