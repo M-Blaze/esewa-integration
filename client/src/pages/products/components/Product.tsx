@@ -5,17 +5,17 @@ import useEsewa from "../../../hooks/useEsewa"
 const Product = ({ productData }) => {
   const [openEsewaPortal] = useEsewa()
 
-  const proceedToBuy = (product) => {
+  const proceedToBuy = () => {
     const payload = {
-        "amount": `${product.price}`,
+        "amount": `${productData.price}`,
         "product_delivery_charge": "0",
         "product_service_charge": "0",
-        "product_code": product.id,
+        "product_code": productData.id,
         "signed_field_names": "total_amount,transaction_uuid,product_code",
-        "success_url": "https://localhost:8080/success",
-        "failure_url": "https://localhost:8080/failure",
+        "success_url": "http://localhost:8080/success",
+        "failure_url": "http://localhost:8080/failure",
         "tax_amount": "0",
-        "total_amount": `${product.price}`,
+        "total_amount": `${productData.price}`,
       }
 
       openEsewaPortal(payload)
