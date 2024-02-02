@@ -9,8 +9,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/products' element={<Products />} />
-          <Route path='/success' element={<Products />} />
-          <Route path='/failure' element={<Products />} />
           <Route path="*" element={<Navigate to="/products" />} />
         </Routes>
       </BrowserRouter>
